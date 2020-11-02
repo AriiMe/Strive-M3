@@ -20,9 +20,8 @@ function sumOfTwo() {
 Create a function to check two given numbers and return true if one of the number is 50 or if their sum is 50.
 */
 function checkTheNumba(a, b) {
-    if (a === 50 || b === 50) {
-      return true;
-    } else if (a + b === 50) {
+    const sum = a + b;
+    if ( sum === 50 || a === 50 || b === 50) {
       return true;
     } else {
       return false;
@@ -37,11 +36,19 @@ function removeChar(string, remove) {
     newArray.splice([remove], 1);
     return newArray.join("");
   }
+
+  function removeCharacter (str, num){
+      //let str1 = str.substr(0,num)
+      //let str2 = str.substr(num)
+      console.log(str.substr(0,num -1).concat(str.substr(num)))
+  }
+
+  removeCharacter('Hello', 2);
 /*
 4)
  Create a function to find the largest of three given integers.
 */
-let largestArray = [4 , 8, 6, 2, 57, 5676, 79, 22];
+let largestArray = [1, 2, 3,];
 let largest= 0;
 
 function findLargestOfThree(){
@@ -115,6 +122,9 @@ function arraySum(){
     return sumOfArray;
 }
 
+
+
+
 /*
 9)
 Create a function to test whether an array of integers of length 2 contains 1 or a 3. 
@@ -124,13 +134,37 @@ Create a function to test whether an array of integers of length 2 contains 1 or
 
  function arrayNotContain(arrayidk) {
     return ((arrayidk[0] !== 1 || arrayidk[1]!==1) || (arrayidk[0] !== 3 || arrayidk[1] !== 3)) 
-     
+
+    /*
+    const contains = function (nums){
+        if (nums/indexOf(1)) != -1 || nums.indexOf(3) == -1{
+            return true
+        } else {
+            return false 
+        }
+    }
+     */
 /*
 10)
 Create a function to test whether an array of integers of length 2 does not contain 1 or a 3
 
+*/
+function findOneOrThreeReverse(array) {
+    for (let i = 0; i < array.length; i++) {
+      if (findOneOrThreeReverse === false) {
+        return findOneOrThreeReverse;
+      } else {
+        if (array[i] === 1 || array[i] === 3) {
+          findOneOrThreeReverse = false;
+        } else {
+          findOneOrThreeReverse = true;
+        }
+      }
+    }
+    return findOneOrThreeReverse;
+  }
 
-
+/*
 11)
 Create a function to find the longest string from a given array of strings.
 */
@@ -152,6 +186,23 @@ Types of angles:
     Right angle: An 90 degree angle.
     btuse angle: An angle between 90 and 180 degrees.
     Straight angle: A 180 degree angle.
+*/
+    function findAngleType(numOfDegrees) {
+  if (numOfDegrees > 0 && numOfDegrees < 90) {
+    findAngleType = "Acute Angle";
+  } else if (numOfDegrees === 90) {
+    findAngleType = "Right Angle";
+  } else if (numOfDegrees > 90 && numOfDegrees < 180) {
+    findAngleType = "Obtuse Angle";
+  } else if (numOfDegrees === 180) {
+    findAngleType = "Straight Angle";
+  } else {
+    findAngleType = "Angle was more than 180 degrees";
+  }
+  return findAngleType;
+}
+
+/*
 13)
 Create a function to find the index of the greatest element of a given array of integers
 14)

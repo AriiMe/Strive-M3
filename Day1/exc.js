@@ -63,21 +63,30 @@ step has spaces on the right hand side!
         '### '
         '####' */
 
-        function halfTree(num){
-            let char = '';
-        
-            for(i = 0; i <= num ; i++) {
-                for(j = 1; j <= i; j++) {
-                   char += '#';
-                }
-                char += '\n';
+        function halfTree(h) {
+            for (var i = 0; i <= h; i++) {
+              var hash = "";
+              for (var k = 0; k <= 1; k++) {
+                hash += "  ";
+              }
+              for (var j = 0; j <= i; j++) {
+                hash += "#";
+              }
+              console.log(hash);
             }
-            return char;
-        }
+          }
+          
         
-        //console.log(halfTree(2));
-        //console.log(halfTree(3));
-        //console.log(halfTree(4));
+          
+          function halfTree0(num) {
+            for (let i = 0; i < num; i++) {
+              console.log("*".repeat(i + 1));
+            }
+          }
+          halfTree(1);
+          halfTree(2);
+          halfTree(3);
+        
 
 /* 7) REVERSE STRING
 Given a string, return a new string with the reversed
@@ -116,14 +125,14 @@ pyramid has spaces on both the left and right hand sides
         '#####' */
         function Tree(h) {
             for (var i = 0; i <= h; i++) {
-              var star = "";
+              var hash = "";
               for (var k = 1; k <= h - i; k++) {
-                star += " ";
+                hash += " ";
               }
               for (var j = 0; j <= i; j++) {
-                star += " #";
+                hash += " #";
               }
-              console.log(star);
+              console.log(hash);
             }
           }
           
