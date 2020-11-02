@@ -13,7 +13,7 @@ function sumOfTwo() {
         return sum;
 };
 
-console.log(sumOfTwo(sum));
+
 
 /*
 2)
@@ -41,7 +41,7 @@ function removeChar(string, remove) {
 4)
  Create a function to find the largest of three given integers.
 */
-let largestArray = [3 , 6, 2, 56, 32, 5, 89, 32];
+let largestArray = [4 , 8, 6, 2, 57, 5676, 79, 22];
 let largest= 0;
 
 function findLargestOfThree(){
@@ -53,7 +53,7 @@ function findLargestOfThree(){
 
 }
 
-console.log(largest);
+
 
 
 
@@ -86,11 +86,21 @@ function displayName(s){
         return " ";
     }
 }
-console.log(cityName("Los"));
+
 /*
 8)
 Create a function to calculate the sum of three elements of a given array of integers of length 3.
 */
+
+let arrayeet=[1, 2, 3];
+let sumOfArray=0;
+
+function arraySum(){
+    for(let i=0; i<arrayeet.length; i++){
+        sumOfArray+=arrayeet[i];
+    }
+    return sumOfArray;
+}
 
 /*
 9)

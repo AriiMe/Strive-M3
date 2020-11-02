@@ -63,6 +63,22 @@ step has spaces on the right hand side!
         '### '
         '####' */
 
+        function halfTree(num){
+            let char = '';
+        
+            for(i = 0; i <= num ; i++) {
+                for(j = 1; j <= i; j++) {
+                   char += '#';
+                }
+                char += '\n';
+            }
+            return char;
+        }
+        
+        //console.log(halfTree(2));
+        //console.log(halfTree(3));
+        //console.log(halfTree(4));
+
 /* 7) REVERSE STRING
 Given a string, return a new string with the reversed
 order of characters
@@ -98,7 +114,26 @@ pyramid has spaces on both the left and right hand sides
         '  #  '
         ' ### '
         '#####' */
+        function Tree(h) {
+            for (var i = 0; i <= h; i++) {
+              var star = "";
+              for (var k = 1; k <= h - i; k++) {
+                star += " ";
+              }
+              for (var j = 0; j <= i; j++) {
+                star += " #";
+              }
+              console.log(star);
+            }
+          }
+          
+          //Tree(0);
+          //Tree(1);
+          //Tree(2);
 
+          
+          
+          
 /* 10) SPYRAL MATRIX
 Write a function that accepts an integer N
 and returns a NxN spiral matrix.
