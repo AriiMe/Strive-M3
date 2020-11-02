@@ -295,14 +295,27 @@ this would be a "DiegoRiccardo".
 34 has four factors: 1, 2, 17, and 34.
 this would be "34".
 */
-function factors(numb){
-    let str = '';
-    if(numb % 3 === 0){
-        str =str + 'Diego';
-    } if (numb % 5=== 0){
-        str = str + 'ricardo';
-    }if
+function factors(numb) {
+    let str ='';
+    if(numb % 3===0 ){
+         str = str + 'Diego';
+    }if (numb % 5===0 ){
+        str = str + 'Riccardo';
+
+    }if (numb % 7===0 ){
+        str = str + 'stefano';
+
+    }
+    if(str.length===0){
+        return String(numb);
+
+    }
+    return str;
+
+
+
 }
+console.log('#19',factors(15))
 
 
 /*
