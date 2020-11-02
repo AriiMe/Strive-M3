@@ -66,6 +66,17 @@ Create a function to check whether two numbers are in range 40..60 or in the ran
 
 
 
+function between(x, y, min, max) {
+    x >= min && x <= max;
+    y >= min && y <= max;
+  }
+  
+  if (between(x, 40, 60)) {
+    
+  }else(between(y, 70, 100))
+      return;
+  
+
 
 /*
 6) 
