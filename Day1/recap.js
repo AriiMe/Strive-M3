@@ -120,11 +120,26 @@ function arraySum(){
 Create a function to test whether an array of integers of length 2 contains 1 or a 3. 
 */
 
+ let arrayidk = [3, 2, 4, 7, 8 , 9, 46, 4554];
+
+ function arrayNotContain(arrayidk) {
+    return ((arrayidk[0] !== 1
+    || arrayidk[1]!==1) || (arrayidk[0] !== 3
+            || arrayidk[1] !== 3)) 
+     
 /*
 10)
 Create a function to test whether an array of integers of length 2 does not contain 1 or a 3
+
+
+
 11)
 Create a function to find the longest string from a given array of strings.
+*/
+
+
+
+/*
 12)
 Create a function to find the types of a given angle.
 Types of angles:
@@ -160,3 +175,30 @@ this would be "34".
 20)
 Create a function that given a phrase returns its acronym, like British Broadcasting Corporation returns BBC
 */
+
+
+
+
+/*
+let first = 1;
+let next = 1;
+
+for(i=1; i<10; i++){
+let fibo = firts + next;
+
+
+}
+
+
+
+
+ fibonacci(4)   .--------> 2 + 1 = 3
+      |          /               |
+      '--> fibonacci(3) + fibonacci(2)
+            |    ^           
+            |    '----------- 2 = 1 + 1 <----------.
+1st step -> |                     ^                |
+            |                     |                |
+            '---->  fibonacci(2) -' + fibonacci(1)-'
+
+            */
