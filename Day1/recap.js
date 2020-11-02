@@ -90,7 +90,15 @@ function between(x, y, min, max) {
 Create a function to create a new string of specified copies (positive number) of a given string.
 */
 
-
+function createStringCopiesXTimes(string, numberOfTimes) {
+    let stringArray = [];
+  
+    for (let i = 0; i < numberOfTimes; i++) {
+      stringArray.push(string);
+    }
+  
+    return stringArray.join("");
+  }
 
 /*
 7)
