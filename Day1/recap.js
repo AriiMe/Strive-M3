@@ -214,6 +214,15 @@ Types of angles:
 13)
 Create a function to find the index of the greatest element of a given array of integers
 14)
+
+*/
+
+const isPositiveAndNegative=(num1, num2)=>{
+
+    return num1<0 && num2>0 || num1>0 && num2<0 ? true : false;
+       
+}
+/*
 Create a function to get the largest even number from an array of integers.
 15)
 Create a function to check two given numbers and return true if one of the number is 50 or if their sum is 50.
@@ -245,7 +254,32 @@ function checkForFiddy(idk1, idk2) {
 
 17)
 Create a function to create new string with first 3 characters are in lower case and the others in upper case. If the string length is less than 3 convert all the characters in upper case. 
+*/
+function createString(firstChar, lastChar){
+    
+    
+    if (str.lenght<3){
+        return str.toUpperCase()
+        }
+        return str = str.concat((str.slice(0,4).toLowerCase()), (str.slice(4)).toUpperCase)
+    
+}
+
+
+/*
 18)
+*/
+
+const sumOfTwo = (a,b) => {
+    let sum = a+b
+    if(sum >= 50 && sum<= 80){
+        return 65
+    }else{
+        return 80
+    }
+}
+
+/*
 Create a function to calculate the sum of the two given integers, If the sum is in the range 50..80 return 65 other wise return 80.
 19)
 Create a function to convert a number to a string, the contents of which depend on the number's factors. Follow next example:
@@ -260,12 +294,30 @@ this would be a simple "Stefano".
 this would be a "DiegoRiccardo".
 34 has four factors: 1, 2, 17, and 34.
 this would be "34".
+*/
+function factors(numb){
+    let str = '';
+    if(numb % 3 === 0){
+        str =str + 'Diego';
+    } if (numb % 5=== 0){
+        str = str + 'ricardo';
+    }if
+}
+
+
+/*
 20)
 Create a function that given a phrase returns its acronym, like British Broadcasting Corporation returns BBC
 */
 
-
-
+const acronym = (phrase) =>{
+    out = []
+    phrase.split(" ").forEach((element)=>{
+        out.push(element.toUpperCase()[0])
+    })
+    return out.join("")
+}
+ console.log(acronym("British Brodcasting Corporation"))
 
 /*
 let first = 1;

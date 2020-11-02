@@ -136,9 +136,12 @@ pyramid has spaces on both the left and right hand sides
             }
           }
           
-          //Tree(0);
-          //Tree(1);
-          //Tree(2);
+          
+          Tree(0);
+          
+          Tree(1);
+          
+          Tree(2);
 
           
           
