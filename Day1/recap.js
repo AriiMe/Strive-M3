@@ -2,14 +2,18 @@
 1)
 Create a function to calculate the sum of the two given integers. If the two values are same, then returns triple their sum.
 */
-function sumOfTwo(a, b){
-    let sum = a + b;    
+let a = 3;
+let b = 3;
+let sum = a + b;
+function sumOfTwo() {
 
-    if(a == b){
-        console.log((sumOfTwo)* 3);
-    }else
-    console.log(sum)
+    if (a === b) {
+        return sum * 3;
+    } else
+        return sum;
 };
+
+console.log(sumOfTwo(sum));
 
 /*
 2)
@@ -28,16 +32,40 @@ function checkTheNumba(a, b) {
 3)
 Create a function to remove a character at the specified position of a given string and return the new string.
 */
-
+function removeChar(string, remove) {
+    let newArray = string.split("");
+    newArray.splice([remove], 1);
+    return newArray.join("");
+  }
 /*
 4)
  Create a function to find the largest of three given integers.
 */
+let largestArray = [3 , 6, 2, 56, 32, 5, 89, 32];
+let largest= 0;
+
+function findLargestOfThree(){
+    for (i=0; i<=largest;i++){
+    if (array[i]>largest) {
+        var largest=largestArray[i];
+    }
+}
+
+}
+
+console.log(largest);
+
+
+
+
 
 /*
 5)
 Create a function to check whether two numbers are in range 40..60 or in the range 70..100 inclusive.
 */
+
+
+
 
 /*
 6) 
@@ -49,6 +77,16 @@ Create a function to create a new string of specified copies (positive number) o
 Create a function to display the city name if the string begins with "Los" or "New" otherwise return blank.
 */
 
+function displayName(s){
+    if(s === "Los"){
+        return s + "Angeles";
+    }else if(s === "New"){
+        return s + "York";
+    }else{
+        return " ";
+    }
+}
+console.log(cityName("Los"));
 /*
 8)
 Create a function to calculate the sum of three elements of a given array of integers of length 3.
