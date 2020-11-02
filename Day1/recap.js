@@ -7,15 +7,23 @@ function sumOfTwo(a, b){
 
     if(a == b){
         console.log((sumOfTwo)* 3);
-    }
+    }else
     console.log(sum)
-}
-console.log(sumOfTwo(3, 3));
+};
+
 /*
 2)
 Create a function to check two given numbers and return true if one of the number is 50 or if their sum is 50.
 */
-
+function checkTheNumba(a, b) {
+    if (a === 50 || b === 50) {
+      return true;
+    } else if (a + b === 50) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 /*
 3)
 Create a function to remove a character at the specified position of a given string and return the new string.
