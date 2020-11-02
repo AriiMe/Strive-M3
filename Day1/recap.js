@@ -83,6 +83,8 @@ function between(x, y, min, max) {
 Create a function to create a new string of specified copies (positive number) of a given string.
 */
 
+
+
 /*
 7)
 Create a function to display the city name if the string begins with "Los" or "New" otherwise return blank.
