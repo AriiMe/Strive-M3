@@ -158,6 +158,17 @@ Create a function to find the index of the greatest element of a given array of 
 Create a function to get the largest even number from an array of integers.
 15)
 Create a function to check two given numbers and return true if one of the number is 50 or if their sum is 50.
+*/
+
+function checkForFiddy(idk1, idk2) {
+    if (idk1 === 50 || idk2 === 50 || idk1 + idk2 === 50) {
+      return true;
+    }  else {
+      return false;
+    }
+  }
+
+/*
 16)Create a function to check from two given integers, whether one is positive and another one is negative.
 */
  function positiveOrNegative(x, y){
