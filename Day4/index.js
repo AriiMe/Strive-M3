@@ -38,12 +38,12 @@ const fetchBooks = (data) => {
 const loadBooks = () => {
     fetchBooks((body) =>{
         let bookeroni = document.createElement("div");
-        //bookeroni.classList.add('card');
-        const destination = document.querySelector(".card-deck");
+        bookeroni.classList.add('col');
+        const destination = document.querySelector(".row");
         console.log(body)
         body.forEach((element) => {
             console.log(element)
-         bookeroni.innerHTML += `<div class="mt-5 mb-4 mr-4 shadow-sm">
+         bookeroni.innerHTML += `<div class="card d-inline-block">
         <img
           src="${element.img}"
           class="card-img-top"
