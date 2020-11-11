@@ -17,7 +17,21 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-
+    <style>
+            nav {
+              background: rgb(39,73,19);
+      background: radial-gradient(circle, rgba(39,73,19,1) 0%, rgba(5,29,25,1) 100%);
+              );
+            }
+            body {
+              background: rgb(39, 73, 19);
+              background: linear-gradient(
+                160deg,
+                rgba(39, 73, 19, 1) 0%,
+                rgba(5, 29, 25, 1) 55%
+              );
+            }
+    </style>
     <title>yeet</title>
   </head>
   <body>
@@ -103,7 +117,7 @@
                                     <h5 class="card-title">${e.name}</h5>
                                     <p class="card-text">${e.brand}</p>
                                     <p class="card-text">$${e.price}</p>
-                                    <a href="#" class="btn btn-warning">Buy</a>
+                                    
                                     </div>`;
               productList.appendChild(product);
             });
