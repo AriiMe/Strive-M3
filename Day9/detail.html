@@ -75,19 +75,17 @@
 
       window.onload = async () => {
         let productList = document.querySelector(".productList");
-        let urlParams = new URLSearchParams(window.location.search); // creating a new instance of the URLSearchParams object
-        id = urlParams.get("id"); // saving the id retrieved from the url address
+        let urlParams = new URLSearchParams(window.location.search);
+        id = urlParams.get("id");
         try {
           let response = await fetch(url + id, {
-            // declaring the CRUD method
             headers: new Headers({
-              // we need also to declare the content type
               Authorization:
                 "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
               "Content-Type": "application/json",
             }),
-          }); // contacting the endpoint for a single event
-          let event = await response.json(); // transforming the response body in an usable object, asyncronous operation!
+          });
+          let event = await response.json();
 
           let product = document.createElement("div");
           product.classList.add("card");
@@ -102,11 +100,6 @@
         } catch (error) {
           console.log(error);
         }
-
-        //   let element = document.createElement("card");
-        //   element.innerHTML = `${event.name} : ${event.description} : ${event.brand} : ${event.imageURL} : ${event.price}`;
-
-        //   document.querySelector("#details").appendChild(element);
       };
 
       const handleDelete = async () => {
@@ -114,14 +107,12 @@
           const response = await fetch(url + id, {
             method: "DELETE",
             headers: new Headers({
-              // we need also to declare the content type
               Authorization:
                 "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
               "Content-Type": "application/json",
             }),
           });
           if (response.ok) {
-            // checking the ok property which stores the successful result of the operation
             alert("Event deleted successfully");
             location.assign("yeet.html");
           } else {

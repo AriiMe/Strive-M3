@@ -68,7 +68,7 @@
       <h1>buy shit plz i am hungry</h1>
       <h2 class="my-5">maybe available products idk</h2>
       <div class="col-md-6 offset-md-3">
-        <!-- <div id="currentEvents"></div> -->
+       
         <ul class="list-group list-group-flush" id="currentEvents"></ul>
       </div>
     </div>
@@ -103,19 +103,19 @@
       window.onload = async () => {
         const url = "https://striveschool-api.herokuapp.com/api/product/";
         let productList = document.querySelector(".container");
-        let urlParams = new URLSearchParams(window.location.search); // creating a new instance of the URLSearchParams object
-        id = urlParams.get("id"); // saving the id retrieved from the url address bar
+        let urlParams = new URLSearchParams(window.location.search); 
+        id = urlParams.get("id"); 
 
         try {
           let response = await fetch(url, {
             headers: new Headers({
-              // we need also to declare the content type
+             
               Authorization:
                 "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
               "Content-Type": "application/json",
             }),
-          }); // this is getting the response from the API for a fetch request
-          let event = await response.json(); // this is transforming the response in a json, asyncronous operation!
+          }); 
+          let event = await response.json(); 
           console.log(event);
           if (event.length > 0) {
             event.forEach((e) => {

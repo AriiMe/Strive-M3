@@ -1,4 +1,3 @@
-  
 <!-- @format -->
 
 <!DOCTYPE html>
@@ -59,7 +58,7 @@
       }
 
       .btn:hover {
-        background-position: right center; /* change the direction of the change here */
+        background-position: right center;
         color: #fff;
         text-decoration: none;
       }
@@ -164,8 +163,9 @@
                   role="status"
                   aria-hidden="true"
                   id="loadingSpinner"
-                ></span>
-                Submit event
+                >
+                  Submit product</span
+                >
               </button>
             </div>
           </form>
@@ -174,16 +174,14 @@
     </div>
 
     <script>
-              const url = "https://striveschool-api.herokuapp.com/api/product/";
+      const url = "https://striveschool-api.herokuapp.com/api/product/";
       window.onload = async () => {
-                let urlParams = new URLSearchParams(window.location.search);
+        let urlParams = new URLSearchParams(window.location.search);
         id = urlParams.get("id");
         if (id) {
-          //when the page loads it check if there's an id, in that case you have to fill the input field with product info
           try {
             let response = await fetch(url + id, {
-              //we take this info with a get request that thanks to the id returns us only the element that u clicked on
-              method: "GET", //so it is kinda the same request you did for displaying the element in the detail page
+              method: "GET",
               headers: new Headers({
                 Authorization:
                   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
@@ -192,7 +190,7 @@
             });
             let product = await response.json();
             document.querySelector("#name").value = product.name;
-            document.querySelector("#description").value = product.description; //here your're filling the inputs
+            document.querySelector("#description").value = product.description;
             document.querySelector("#brand").value = product.brand;
             document.querySelector("#image").value = product.imageUrl;
             document.querySelector("#price").value = product.price;
@@ -203,13 +201,13 @@
       };
 
       const handleSubmit = (e) => {
-        e.preventDefault(); // preventing the default browser event handling
+        e.preventDefault();
         submitEvent();
       };
 
       const submitEvent = async () => {
         let spinner = document.querySelector("#loadingSpinner");
-        spinner.classList.toggle("d-none"); // showing the spinner
+        spinner.classList.toggle("d-none");
 
         let myEvent = {
           name: document.querySelector("#name").value,
@@ -223,9 +221,8 @@
           let response;
           if (id) {
             response = await fetch(url + id, {
-              // our PUT request is made with the fetch method as well!
-              method: "PUT", // declaring the CRUD method
-              body: JSON.stringify(myEvent), // we need to stringify the JS object in order to send it
+              method: "PUT",
+              body: JSON.stringify(myEvent),
               headers: new Headers({
                 Authorization:
                   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
@@ -234,9 +231,8 @@
             });
           } else {
             response = await fetch(url, {
-              // our PUT request is made with the fetch method as well!
-              method: "POST", // declaring the CRUD method
-              body: JSON.stringify(myEvent), // we need to stringify the JS object in order to send it
+              method: "POST",
+              body: JSON.stringify(myEvent),
               headers: new Headers({
                 Authorization:
                   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
@@ -245,23 +241,18 @@
             });
           }
 
-
-
           if (response.ok) {
-            // checking the ok property which stores the successful result of the operation
-            spinner.classList.toggle("d-none"); // hiding the spinner
+            spinner.classList.toggle("d-none");
             alert(`Event ${id ? "updated" : "created"} successfully`);
             location.assign("yeet.html");
           } else {
-            spinner.classList.toggle("d-none"); // hiding the spinner
+            spinner.classList.toggle("d-none");
             alert("Something went wrong!");
           }
         } catch (error) {
           console.log(error);
         }
       };
-
-      // const saveEvent =
     </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
