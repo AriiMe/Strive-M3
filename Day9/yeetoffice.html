@@ -1,3 +1,4 @@
+  
 <!-- @format -->
 
 <!DOCTYPE html>
@@ -140,14 +141,14 @@
             </div>
 
             <div class="form-group">
-              <label for="imageUrl"
+              <label for="image"
                 >product image url only cause idk how to make upload
                 button</label
               >
               <input
                 type="text"
                 class="form-control"
-                id="imageUrl"
+                id="image"
                 placeholder="Paste here product image url"
               />
             </div>
@@ -173,10 +174,9 @@
     </div>
 
     <script>
+              const url = "https://striveschool-api.herokuapp.com/api/product/";
       window.onload = async () => {
-        const url = "https://striveschool-api.herokuapp.com/api/product/";
-
-        let urlParams = new URLSearchParams(window.location.search);
+                let urlParams = new URLSearchParams(window.location.search);
         id = urlParams.get("id");
         if (id) {
           //when the page loads it check if there's an id, in that case you have to fill the input field with product info
@@ -212,16 +212,15 @@
         spinner.classList.toggle("d-none"); // showing the spinner
 
         let myEvent = {
-          // gathering the data from the form, field by field
           name: document.querySelector("#name").value,
           description: document.querySelector("#description").value,
-          time: document.querySelector("#imageUrl").value,
+          imageUrl: document.querySelector("#image").value,
+          brand: document.querySelector("#brand").value,
           price: document.querySelector("#price").value,
         };
 
         try {
           let response;
-
           if (id) {
             response = await fetch(url + id, {
               // our PUT request is made with the fetch method as well!
@@ -235,26 +234,18 @@
             });
           } else {
             response = await fetch(url, {
-              // our POST request is made with the fetch method as well!
+              // our PUT request is made with the fetch method as well!
               method: "POST", // declaring the CRUD method
               body: JSON.stringify(myEvent), // we need to stringify the JS object in order to send it
               headers: new Headers({
-                // we need also to declare the content type
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
                 "Content-Type": "application/json",
               }),
             });
           }
-          response = await fetch(url, {
-            // our POST request is made with the fetch method as well!
-            method: "POST", // declaring the CRUD method
-            body: JSON.stringify(myEvent), // we need to stringify the JS object in order to send it
-            headers: new Headers({
-              // we need also to declare the content type
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
-              "Content-Type": "application/json",
-            }),
-          });
+
+
 
           if (response.ok) {
             // checking the ok property which stores the successful result of the operation
