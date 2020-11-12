@@ -89,10 +89,10 @@
             }),
           }); // contacting the endpoint for a single event
           let event = await response.json(); // transforming the response body in an usable object, asyncronous operation!
-            
-              let product = document.createElement("div");
-              product.classList.add("card");
-              product.innerHTML = `<img src="${event.imageUrl}" class="card-img-top" alt="...">
+
+          let product = document.createElement("div");
+          product.classList.add("card");
+          product.innerHTML = `<img src="${event.imageUrl}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <h5 class="card-title">${event.name}</h5>
                                     <p class="card-text">${event.brand}</p>
@@ -101,9 +101,7 @@
                   <a class="btn btn-info" href="detail.html?id=${event._id}">VIEW DETAILS</a>
                 </span>
                                     </div>`;
-              productList.appendChild(product);
-    
-
+          productList.appendChild(product);
         } catch (error) {
           console.log(error);
         }
