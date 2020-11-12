@@ -50,7 +50,7 @@
       <h1>blalalla</h1>
       <h2 class="mt-5">produccc details</h2>
       <div class="my-5" id="details"></div>
-      <div class="container">
+      <div class="container productList">
         <div class="row">
           <div class="col"></div>
         </div>
@@ -75,13 +75,12 @@
       const url = "https://striveschool-api.herokuapp.com/api/product/";
 
       window.onload = async () => {
+        let productList = document.querySelector(".productList");
         let urlParams = new URLSearchParams(window.location.search); // creating a new instance of the URLSearchParams object
-        id = urlParams.get("id"); // saving the id retrieved from the url address bar
-
+        id = urlParams.get("id"); // saving the id retrieved from the url address
         try {
           let response = await fetch(url + id, {
             // declaring the CRUD method
-
             headers: new Headers({
               // we need also to declare the content type
               Authorization:
@@ -90,23 +89,21 @@
             }),
           }); // contacting the endpoint for a single event
           let event = await response.json(); // transforming the response body in an usable object, asyncronous operation!
-          if (event.length > 0) {
-            event.forEach((e) => {
+            
               let product = document.createElement("div");
               product.classList.add("card");
-              product.innerHTML = `<img src="${e.imageUrl}" class="card-img-top" alt="...">
+              product.innerHTML = `<img src="${event.imageUrl}" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">${e.name}</h5>
-                                    <p class="card-text">${e.brand}</p>
-                                    <p class="card-text">$${e.price}</p>
+                                    <h5 class="card-title">${event.name}</h5>
+                                    <p class="card-text">${event.brand}</p>
+                                    <p class="card-text">$${event.price}</p>
                                     <span>
-                  <a class="btn btn-info" href="detail.html?id=${e._id}">VIEW DETAILS</a>
+                  <a class="btn btn-info" href="detail.html?id=${event._id}">VIEW DETAILS</a>
                 </span>
                                     </div>`;
               productList.appendChild(product);
-            });
-          } else {
-          }
+    
+
         } catch (error) {
           console.log(error);
         }
