@@ -173,19 +173,33 @@
     </div>
 
     <script>
-      const url = "https://striveschool-api.herokuapp.com/api/product/";
+      window.onload = async () => {
+        const url = "https://striveschool-api.herokuapp.com/api/product/";
 
-      const submitEvent = async () => {
-        let urlParams = new URLSearchParams(window.location.search); // creating a new instance of the URLSearchParams object
-        id = urlParams.get("id"); // saving the id retrieved from the url address bar
-        let myEvent = {
-          // gathering the data from the form, field by field
-          name: document.querySelector("#name").value,
-          description: document.querySelector("#description").value,
-          brand: document.querySelector("#brand").value,
-          imageUrl: document.querySelector("#imageUrl").value,
-          price: document.querySelector("#price").value,
-        };
+        let urlParams = new URLSearchParams(window.location.search);
+        id = urlParams.get("id");
+        if (id) {
+          //when the page loads it check if there's an id, in that case you have to fill the input field with product info
+          try {
+            let response = await fetch(url + id, {
+              //we take this info with a get request that thanks to the id returns us only the element that u clicked on
+              method: "GET", //so it is kinda the same request you did for displaying the element in the detail page
+              headers: new Headers({
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
+                "Content-Type": "application/json",
+              }),
+            });
+            let product = await response.json();
+            document.querySelector("#name").value = product.name;
+            document.querySelector("#description").value = product.description; //here your're filling the inputs
+            document.querySelector("#brand").value = product.brand;
+            document.querySelector("#image").value = product.imageUrl;
+            document.querySelector("#price").value = product.price;
+          } catch (error) {
+            console.log(error);
+          }
+        }
       };
 
       const handleSubmit = (e) => {
@@ -214,7 +228,8 @@
               method: "PUT", // declaring the CRUD method
               body: JSON.stringify(myEvent), // we need to stringify the JS object in order to send it
               headers: new Headers({
-                // we need also to declare the content type
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
                 "Content-Type": "application/json",
               }),
             });
