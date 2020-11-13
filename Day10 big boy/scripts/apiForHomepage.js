@@ -66,11 +66,13 @@
             let col= document.createElement("div");
             col.classList.add("mr-3");
             col.innerHTML= `
-            <img
+            <a href="../backofficu/detail.html?id=${e.description}|${e.title}|${e.category}|${e.imageUrl}"><img
          src="${e.imageUrl}"
          class="d-block w-100 img-fluid rounded"
        alt="img"
-          />`;
+          />
+          `
+          ;
         categoryName.innerHTML = `<h4 id="categoryname1" style="color: white">${e.category}</h4>`;
          movieContainer.appendChild(col);
            });
@@ -109,7 +111,7 @@ async function otherMovie(genre){
             let col= document.createElement("div");
             col.classList.add("mr-3");
             col.innerHTML= `
-            <img
+            <a href="../backofficu/detail.html?id=${e.description}|${e.title}|${e.category}|${e.imageUrl}"><img
          src="${e.imageUrl}"
          class="d-block w-100 img-fluid rounded"
        alt="img"
@@ -151,7 +153,7 @@ async function anotherMovie(genre){
             let col= document.createElement("div");
             col.classList.add("mr-3");
             col.innerHTML= `
-            <img
+            <a href="../backofficu/detail.html?id=${e.description}|${e.title}|${e.category}|${e.imageUrl}"><img
          src="${e.imageUrl}"
          class="d-block w-100 img-fluid rounded"
        alt="img"
@@ -172,6 +174,11 @@ async function anotherMovie(genre){
 anotherMovie("spoopy");
 
 
+
+
+
+
+//https://img.glyphs.co/img?q=85&w=900&src=aHR0cHM6Ly9zMy5tZWRpYWxvb3QuY29tL2Jsb2ctaW1hZ2VzL3ZpbnRhZ2UtZmlsbS10aXRsZS10dXQvMjMuanBn
 /*
 window.onload =  () => {
 fetchByCategory('off', '#section1')
