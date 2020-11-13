@@ -16,34 +16,64 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
+    <style>
+      body {
+        background-color: #141414;
+      }
+
+      hr {
+        background-color: rgb(58, 58, 58);
+      }
+
+      .controls {
+        color: #ccccc6 !important;
+      }
+
+      label {
+        font-size: 1.2rem;
+        color: rgb(133, 133, 133);
+      }
+
+      .form-control {
+        color: #fff !important  ;
+        background-color: grey !important;
+        border-radius: 0 !important;
+        border: none !important;
+        font-size: 1.2rem;
+      }
+
+      .languages {
+        background-color: black !important;
+        width: auto;
+        border: 1px solid rgb(209, 209, 209) !important;
+        font-size: 1rem;
+      }
+
+      .btn {
+        border-radius: 0;
+      }
+
+      .titles {
+        color: rgb(209, 209, 209) !important;
+        font-size: 1.1rem;
+      }
+
+      .btn-outline-dark {
+        color: #707a86;
+        border-color: #707a86;
+      }
+
+      .navbar {
+        background: rgb(0, 0, 0);
+      }
+    </style>
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-      <a class="navbar-brand" href="./yeet.html">oiiiiiiiiiiiiii</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="./yeet.html"
-              >Home <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./yeetoffice.html">Backoffice</a>
-          </li>
-        </ul>
-      </div>
+    <nav class="navbar">
+      <a class="navbar-brand ml-2" href="index.html">
+        <img src="../imgs/logo.png" height="60" alt="" loading="lazy" />
+      </a>
     </nav>
 
     <div class="container text-center">
@@ -70,42 +100,64 @@
     </div>
 
     <script>
-      let id;
-      const url = "https://striveschool-api.herokuapp.com/api/product/";
-
       window.onload = async () => {
-        let productList = document.querySelector(".productList");
+        const url = "https://striveschool-api.herokuapp.com/api/movies/";
         let urlParams = new URLSearchParams(window.location.search);
-        id = urlParams.get("id");
-        try {
-          let response = await fetch(url + id, {
-            headers: new Headers({
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
-              "Content-Type": "application/json",
-            }),
-          });
-          let event = await response.json();
+        elements = urlParams.get("id");
+        element = elements.split("|");
+        id = element[0];
+        category = element[1];
+        console.log(id, category);
 
-          let product = document.createElement("div");
-          product.classList.add("card");
-          product.innerHTML = `<img src="${event.imageUrl}" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">${event.name}</h5>
-                                    <p class="card-text">${event.brand}</p>
-                                    <p class="card-text">$${event.price}</p>
-                                    
-                                    </div>`;
-          productList.appendChild(product);
-        } catch (error) {
-          console.log(error);
+        if (id) {
+          try {
+            let response = await fetch(url + category, {
+              method: "GET",
+              headers: new Headers({
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
+                "Content-Type": "application/json",
+              }),
+            });
+            let movie = await response.json();
+            console.log(movie);
+            let film = movie.find((o) => o._id === id);
+            console.log(film);
+            document.querySelector("#name").value = film.name;
+            document.querySelector("#description").value = film.description;
+            document.querySelector("#category").value = film.category;
+            document.querySelector("#image").value = film.imageUrl;
+          } catch (error) {
+            console.log(error);
+          }
         }
       };
 
-      const handleDelete = async () => {
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        postMovie();
+        document.querySelector("#name").value = "";
+        document.querySelector("#description").value = "";
+        document.querySelector("#category").value = "";
+        document.querySelector("#image").value = "";
+      };
+
+      async function postMovie() {
+        const url = "https://striveschool-api.herokuapp.com/api/movies/";
+
+        let myMovie = {
+          name: document.querySelector("#name").value,
+          description: document.querySelector("#description").value,
+          category: document.querySelector("#category").value,
+          imageUrl: document.querySelector("#image").value,
+        };
+
+        console.log(myMovie);
+
         try {
-          const response = await fetch(url + id, {
-            method: "DELETE",
+          let response = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify(myMovie),
             headers: new Headers({
               Authorization:
                 "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
@@ -113,18 +165,77 @@
             }),
           });
           if (response.ok) {
-            alert("Event deleted successfully");
-            location.assign("yeet.html");
+            alert("success");
           } else {
-            alert("Something went wrong!");
+            alert("fail");
           }
-        } catch (error) {
-          console.log(error);
+        } catch (e) {
+          console.log(e);
         }
-      };
+      }
 
-      const handleEdit = () => {
-        location.href = "yeetoffice.html?id=" + id;
+      async function updateMovie() {
+        const url = "https://striveschool-api.herokuapp.com/api/movies/";
+        let urlParams = new URLSearchParams(window.location.search);
+        elements = urlParams.get("id");
+        element = elements.split("|");
+        id = element[0];
+        category = element[1];
+
+        let myMovie = {
+          name: document.querySelector("#name").value,
+          description: document.querySelector("#description").value,
+          category: document.querySelector("#category").value,
+          imageUrl: document.querySelector("#image").value,
+        };
+
+        try {
+          let response = await fetch(url + id, {
+            method: "PUT",
+            body: JSON.stringify(myMovie),
+            headers: new Headers({
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
+              "Content-Type": "application/json",
+            }),
+          });
+          if (response.ok) {
+            alert("updated successfully");
+            location.assign("index.html");
+          } else {
+            alert("fail");
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      }
+
+      const handleDelete = async () => {
+        const url = "https://striveschool-api.herokuapp.com/api/movies/";
+        let urlParams = new URLSearchParams(window.location.search);
+        elements = urlParams.get("id");
+        element = elements.split("|");
+        id = element[0];
+        category = element[1];
+
+        try {
+          let response = await fetch(url + id, {
+            method: "DELETE",
+            headers: new Headers({
+              "Content-type": "application/json",
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFlNTQ0YWFkOGMzODAwMTc1YTMxY2YiLCJpYXQiOjE2MDUyNjAzNjIsImV4cCI6MTYwNjQ2OTk2Mn0.Qe51Dg0cpT3EV5GhnBW7AtIG0OelpjrPj-4xtzNSrxY",
+            }),
+          });
+          if (response.ok) {
+            alert("deleted successfully");
+            location.assign("index.html");
+          } else {
+            alert("fail");
+          }
+        } catch (e) {
+          console.log(e);
+        }
       };
     </script>
 

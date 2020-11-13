@@ -58,7 +58,7 @@
             }),
         });
         let horrorMovies= await response.json();
-       //console.log(movies);
+      
        if(horrorMovies.length>0){
            horrorMovies.forEach(e => {
             let categoryName = document.querySelector("#categoryname1")
@@ -89,8 +89,8 @@ getMovie("off");
 
 async function otherMovie(genre){
     const url= "https://striveschool-api.herokuapp.com/api/movies/";
-    let movieContainer = document.querySelector("#section1");  
-    let categoryName = document.querySelector("#categoryname1")
+    let movieContainer = document.querySelector("#categoryname2");  
+    let categoryName = document.querySelector("#section-one1")
     try{
         let response = await fetch(url + genre, {
             method:"GET",
@@ -101,7 +101,7 @@ async function otherMovie(genre){
             }),
         });
         let horrorMovies= await response.json();
-       //console.log(movies);
+       
        if(horrorMovies.length>0){
            horrorMovies.forEach(e => {
             let categoryName = document.querySelector("#categoryname2")
@@ -143,7 +143,7 @@ async function anotherMovie(genre){
             }),
         });
         let horrorMovies= await response.json();
-       //console.log(movies);
+       
        if(horrorMovies.length>0){
            horrorMovies.forEach(e => {
             let categoryName = document.querySelector("#categoryname3")
@@ -170,3 +170,41 @@ async function anotherMovie(genre){
     }
 }
 anotherMovie("spoopy");
+
+
+/*
+window.onload =  () => {
+fetchByCategory('off', '#section1')
+fetchByCategory('yeetus', '#categoryname2')
+fetchByCategory('spoopy', '#categoryname2')
+  };
+
+
+  const fetchByCategory = async (category, row) => {
+    const url = "https://striveschool-api.herokuapp.com/api/movies/";
+    
+    try {
+      let response = await fetch(url + category, {
+        headers: new Headers({
+          "Content-Type": "application/json",
+          "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiZTY0NDRiY2RlMTAwMTc2MTZhYjkiLCJpYXQiOjE2MDUyNTY4NzAsImV4cCI6MTYwNjQ2NjQ3MH0.IAzacp11DzbF-PdiHG-GwBeArmtTCwiVWHlW6UgyvAc",}),
+      });
+      let data = await response.json();
+      console.log(data)
+      if (data.length > 0) {
+        data.forEach((content) => {
+          let listContent = document.createElement("div");
+          listContent.classList.add("col");
+          listContent.innerHTML = `<a href="info.html?id=${content._id}"><img
+                                    src="${content.imageUrl}"
+                                    class="d-block w-100 img-fluid rounded"
+                                    alt="img"
+                                    /></a>`
+        document.querySelector(row).appendChild(listContent)
+        })
+      } else {
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }*/
