@@ -1,0 +1,280 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <style>
+      #settings {
+        max-width: 543px;
+      }
+
+      body {
+        background-color: #141414;
+      }
+
+      hr {
+        background-color: rgb(58, 58, 58);
+      }
+
+      .controls {
+        color: #ccccc6 !important;
+      }
+
+      label {
+        font-size: 1.2rem;
+        color: rgb(133, 133, 133);
+      }
+
+      .form-control {
+        color: #fff !important  ;
+        background-color: grey !important;
+        border-radius: 0 !important;
+        border: none !important;
+        font-size: 1.2rem;
+      }
+
+      .btn {
+        border-radius: 0;
+      }
+
+      .titles {
+        color: rgb(209, 209, 209) !important;
+        font-size: 1.1rem;
+      }
+
+      .btn-outline-dark {
+        color: #707a86;
+        border-color: #707a86;
+      }
+      label {
+        color: #fff;
+      }
+      .navbar {
+        background: rgb(0, 0, 0);
+      }
+
+      .btn {
+        background-image: linear-gradient(
+          to right,
+          #707a86 0%,
+          rgb(58, 58, 58) 51%,
+          rgb(0, 0, 0) 100%
+        );
+      }
+      .btn {
+        margin: 20px !important;
+        margin-top: 20px !important;
+        padding: 15px 45px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;
+        box-shadow: 0 0 20px #eee;
+        border-radius: 10px;
+        display: block;
+      }
+
+      .btn:hover {
+        background-position: right center;
+        color: #fff;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a class="navbar-brand ml-2" href="../index.html">
+        <img src="../imgs/logo.png" height="60" alt="" loading="lazy" />
+      </a>
+    </nav>
+
+    <div class="container mt-5">
+      <h1 class="text-center">(backoffice)</h1>
+      <h2 class="text-center mt-5 mb-5">Create a new Movie/Show</h2>
+      <div class="row">
+        <div class="col-md-6 offset-md-3 mt-5">
+          <form onsubmit="handleSubmit(event)">
+            <div class="form-group">
+              <label for="name">Movie/Show name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Write here the Movie/Show name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="category">Movie/Show category</label>
+              <input
+                type="text"
+                class="form-control"
+                id="category"
+                placeholder="Write here the Movie/Show category"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="description">Movie/Show description</label>
+              <textarea
+                class="form-control"
+                id="description"
+                rows="3"
+                placeholder="Write here the event description"
+              ></textarea>
+            </div>
+
+            <!-- <div class="form-group">
+              <label for="price">Movie/Show price</label>
+              <input
+                type="number"
+                class="form-control"
+                id="price"
+                placeholder="Write here the product price"
+              />
+            </div> -->
+
+            <div class="form-group">
+              <label for="image">Movie/Show image url</label>
+              <input
+                type="text"
+                class="form-control"
+                id="image"
+                placeholder="Paste here Movie/Show image url"
+              />
+            </div>
+
+            <div class="form-group">
+              <button
+                class="btn btn-secondary"
+                type="submit"
+                value="Submit event"
+              >
+                <span
+                  class="spinner-border spinner-border-sm d-none"
+                  role="status"
+                  aria-hidden="true"
+                  id="loadingSpinner"
+                ></span>
+                Submit Movie/Show
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const url = "https://striveschool-api.herokuapp.com/api/movies/";
+      window.onload = async () => {
+        let urlParams = new URLSearchParams(window.location.search);
+        id = urlParams.get("id");
+        if (id) {
+          try {
+            let response = await fetch(url + id, {
+              method: "GET",
+              headers: new Headers({
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
+                "Content-Type": "application/json",
+              }),
+            });
+            let movieShow = await response.json();
+            document.querySelector("#name").value = movieShow.name;
+            document.querySelector("#description").value =
+              movieShow.description;
+            document.querySelector("#category").value = movieShow.category;
+            document.querySelector("#image").value = movieShow.imageUrl;
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        submitEvent();
+      };
+
+      const submitEvent = async () => {
+        let spinner = document.querySelector("#loadingSpinner");
+        spinner.classList.toggle("d-none");
+
+        let myMovies = {
+          name: document.querySelector("#name").value,
+          description: document.querySelector("#description").value,
+          imageUrl: document.querySelector("#image").value,
+          category: document.querySelector("#category").value,
+        };
+
+        try {
+          let response;
+          if (id) {
+            response = await fetch(url + id, {
+              method: "PUT",
+              body: JSON.stringify(myMovies),
+              headers: new Headers({
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
+                "Content-Type": "application/json",
+              }),
+            });
+          } else {
+            response = await fetch(url, {
+              method: "POST",
+              body: JSON.stringify(myMovies),
+              headers: new Headers({
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
+                "Content-Type": "application/json",
+              }),
+            });
+          }
+
+          if (response.ok) {
+            spinner.classList.toggle("d-none");
+            alert(`Event ${id ? "updated" : "created"} successfully`);
+            location.assign("../index.html");
+          } else {
+            spinner.classList.toggle("d-none");
+            alert("Something went wrong!");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      };
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

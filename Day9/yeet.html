@@ -68,7 +68,6 @@
       <h1>buy shit plz i am hungry</h1>
       <h2 class="my-5">maybe available products idk</h2>
       <div class="col-md-6 offset-md-3">
-       
         <ul class="list-group list-group-flush" id="currentEvents"></ul>
       </div>
     </div>
@@ -103,19 +102,18 @@
       window.onload = async () => {
         const url = "https://striveschool-api.herokuapp.com/api/product/";
         let productList = document.querySelector(".container");
-        let urlParams = new URLSearchParams(window.location.search); 
-        id = urlParams.get("id"); 
+        let urlParams = new URLSearchParams(window.location.search);
+        id = urlParams.get("id");
 
         try {
           let response = await fetch(url, {
             headers: new Headers({
-             
               Authorization:
                 "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
               "Content-Type": "application/json",
             }),
-          }); 
-          let event = await response.json(); 
+          });
+          let event = await response.json();
           console.log(event);
           if (event.length > 0) {
             event.forEach((e) => {
