@@ -1,6 +1,7 @@
 window.onload = async () => {
     const url = ("https://striveschool-api.herokuapp.com/api/movies/")
     let productList = document.querySelector("#section1");
+    let categoryName = document.querySelector("#categoryname1")
     let urlParams = new URLSearchParams(window.location.search);
     id = urlParams.get("id");
     
@@ -12,30 +13,22 @@ window.onload = async () => {
           "Content-Type": "application/json",
         }),
       });
+
+
       let movies = await response.json();
       console.log(movies);
       if (movies.length > 0) {
         movies.forEach((e) => {
           let img = document.createElement("div");
-          img.classList.add("row");
+          img.classList.add("mr-3");
           img.innerHTML = `
-          <div class="item mr-3">
-          <img src="${e.imageUrl}"/>
-          </div>
-          <div class="item mr-3">
-          <img src="${e.imageUrl}"/>
-          </div>
-          <div class="item mr-3">
-          <img src="${e.imageUrl}"/>
-          </div>
-          <div class="item mr-3">
-          <img src="${e.imageUrl}"/>
-          </div>
-          <div class="item mr-3">
-          <img src="${e.imageUrl}"/>
-          </div>
           
-        `;
+          <img
+          src="${e.imageUrl}"
+          class="d-block w-100 img-fluid rounded"
+          alt="img"
+          />`;
+          categoryName.innerHTML = `<h4 id="categoryname1" style="color: white">${e.category}</h4>`;
           productList.appendChild(img);
         });
       } else {
