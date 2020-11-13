@@ -5,7 +5,7 @@ window.onload = async () => {
     id = urlParams.get("id");
     
     try {
-      let response = await fetch(url + "test5", {
+      let response = await fetch(url + "off", {
         headers: new Headers({
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
@@ -16,16 +16,33 @@ window.onload = async () => {
       console.log(movies);
       if (movies.length > 0) {
         movies.forEach((e) => {
-          let product = document.createElement("div");
-          product.classList.add("item");
-          product.innerHTML = `
-          <img src="${e.imageUrl}" />
+          let img = document.createElement("div");
+          img.classList.add("row");
+          img.innerHTML = `
+          <div class="item mr-3">
+          <img src="${e.imageUrl}"/>
+          </div>
+          <div class="item mr-3">
+          <img src="${e.imageUrl}"/>
+          </div>
+          <div class="item mr-3">
+          <img src="${e.imageUrl}"/>
+          </div>
+          <div class="item mr-3">
+          <img src="${e.imageUrl}"/>
+          </div>
+          <div class="item mr-3">
+          <img src="${e.imageUrl}"/>
+          </div>
+          
         `;
-          productList.appendChild(product);
+          productList.appendChild(img);
         });
       } else {
       }
-    } catch (error) {
+    }
+    
+    catch (error) {
       console.log(error);
     }  
   };
