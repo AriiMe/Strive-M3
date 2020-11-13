@@ -193,8 +193,10 @@ fetchByCategory('spoopy', '#categoryname2')
     try {
       let response = await fetch(url + category, {
         headers: new Headers({
-          "Content-Type": "application/json",
-          "Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiZTY0NDRiY2RlMTAwMTc2MTZhYjkiLCJpYXQiOjE2MDUyNTY4NzAsImV4cCI6MTYwNjQ2NjQ3MH0.IAzacp11DzbF-PdiHG-GwBeArmtTCwiVWHlW6UgyvAc",}),
+             Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzRjOTRiY2RlMTAwMTc2MTZhODAiLCJpYXQiOjE2MDUxMDg4MDEsImV4cCI6MTYwNjMxODQwMX0.mtbbZ989-aU75_cKH3KnULhH7anOrPQdcdW1R7MQTSk",
+             "Content-Type": "application/json",
+            }),
       });
       let data = await response.json();
       console.log(data)
@@ -202,12 +204,13 @@ fetchByCategory('spoopy', '#categoryname2')
         data.forEach((content) => {
           let listContent = document.createElement("div");
           listContent.classList.add("col");
-          listContent.innerHTML = `<a href="info.html?id=${content._id}"><img
-                                    src="${content.imageUrl}"
-                                    class="d-block w-100 img-fluid rounded"
-                                    alt="img"
-                                    /></a>`
-        document.querySelector(row).appendChild(listContent)
+          listContent.innerHTML = <a href="../backofficu/detail.html?id=${e.description}|${e.title}|${e.category}|${e.imageUrl}"><img
+         src="${e.imageUrl}"
+         class="d-block w-100 img-fluid rounded"
+       alt="img"
+          />`;
+        categoryName.innerHTML = `<h4 id="categoryname1" style="color: white">${e.category}</h4>`;
+         movieContainer.appendChild(col);
         })
       } else {
       }
